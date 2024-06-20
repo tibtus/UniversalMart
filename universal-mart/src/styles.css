@@ -1,0 +1,29 @@
+.App {
+  text-align: center;
+  display: block;
+  border: 1px solid red;
+}
+
+.Header {
+  text-align: center;
+  display: block;
+  border: 1px solid red;
+}
+
+.Main {
+  text-align: center;
+  display: block;
+  border: 1px solid red;
+}
+
+.Nav {
+  text-align: center;
+  display: block;
+  border: 1px solid red;
+}
+
+.Footer {
+  text-align: center;
+  display: block;
+  border: 1px solid red;
+}
