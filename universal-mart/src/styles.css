@@ -1,29 +1,303 @@
 .App {
   text-align: center;
   display: block;
-  border: 1px solid red;
 }
 
 .Header {
   text-align: center;
   display: block;
-  border: 1px solid red;
+    background: black;
+    color: white;
+    text-transform: uppercase;
+    font-size: 20px;
+    height: 50px;
+    align-items: center;
+    align-content: center;
 }
 
 .Main {
   text-align: center;
   display: block;
-  border: 1px solid red;
 }
 
 .Nav {
   text-align: center;
   display: block;
-  border: 1px solid red;
 }
 
 .Footer {
   text-align: center;
   display: block;
-  border: 1px solid red;
+}
+
+.wrapper {
+    /*display: flex;*/
+    width: 1280px;
+    margin: 0 auto;
+}
+
+.wrapper_flex {
+    display: flex;
+    justify-content: space-between;
+}
+
+.App .App__all_price {
+    display: block;
+    text-align: right;
+
+}
+
+
+/* Carousel */
+.carousel {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    margin: auto;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f0f0;
+}
+
+.carousel__image-container {
+    width: 100%;
+    height: 100%;
+}
+
+.carousel__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.carousel__button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.carousel__button--left {
+    left: 10px;
+}
+
+.carousel__button--right {
+    right: 10px;
+}
+
+/*Presentation*/
+.Presentation h1 {
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    margin: 20px;
+}
+
+.Presentation .Presentation__left {
+    background-size: cover;
+    background-position: center;
+    padding: 20px;
+    margin: 10px;
+    width: 45%;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid olivedrab;
+}
+
+.Presentation .Presentation__right {
+    background-size: cover;
+    background-position: center;
+    padding: 20px;
+    margin: 10px;
+    width: 20%;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid darkgreen;
+}
+
+.wrapper__flex {
+    display: flex;
+}
+
+.Presentation__wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    justify-content: space-between;
+    text-transform: uppercase;
+}
+
+.Presentation__left span {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.Presentation__left p {
+    margin: 5px 0;
+    font-size: 16px;
+}
+
+.Presentation__left button {
+    padding: 10px;
+    background-color: darkgreen;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.Presentation__left button:hover {
+    background-color: #089e50;
+}
+
+.Presentation__right span {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.Presentation__right p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.Presentation__right button {
+    padding: 10px;
+    background-color: white;
+    border: 1px solid darkgreen;
+    color: darkgreen;
+    cursor: pointer;
+}
+
+.Presentation__right button:hover {
+    background-color: #089e50;
+    color: white;
+}
+
+
+.Presentation .All_price button {
+    margin: 10px;
+    padding: 10px;
+    background-color: darkgreen;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.Presentation .All_price button:hover {
+    background-color: #089e50;
+}
+
+.Modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 80%;
+    height: 80%;
+    max-width: 600px;
+    padding: 20px;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+.ModalContent {
+    background-color: black;
+    padding: 20px;
+    border-radius: 8px;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.CloseButton {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    cursor: pointer;
+}
+
+
+@media screen and (max-width: 1280px) {
+
+    .wrapper {
+        max-width: 90vw;
+    }
+
+    .Presentation .Presentation__left {
+        width: 100%;
+        height: 250px;
+    }
+
+    .Presentation .Presentation__right {
+        width: 40%;
+        height: 200px;
+    }
+
+}
+
+
+@media screen and (max-width: 700px) {
+
+    .wrapper {
+        max-width: 90vw;
+    }
+
+    .Presentation .Presentation__left {
+        width: 100%;
+        height: 200px;
+    }
+
+    .Presentation .Presentation__right {
+        width: 35%;
+        height: 180px;
+    }
+
+}
+
+@media screen and (max-width: 470px) {
+
+    .wrapper {
+        max-width: 90vw;
+    }
+
+    .Presentation .Presentation__left {
+        width: 100%;
+        height: 200px;
+    }
+
+    .Presentation .Presentation__right {
+        width: 30%;
+        height: 180px;
+    }
+
+}
+
+@media screen and (max-width: 350px) {
+
+    .wrapper {
+        max-width: 90vw;
+    }
+
+    .Presentation .Presentation__left {
+        width: 100%;
+        height: 200px;
+    }
+
+    .Presentation .Presentation__right {
+        width: 100%;
+        height: 150px;
+    }
+
 }
