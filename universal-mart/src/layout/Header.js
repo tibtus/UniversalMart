@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {FaShoppingCart, FaTrash} from 'react-icons/fa'; // Передбачаючи, що ви встановили бібліотеку react-icons
+import {FaShoppingCart, FaTrash} from 'react-icons/fa';
 
 function Header() {
     const [showModal, setShowModal] = useState(false);
@@ -12,7 +12,6 @@ function Header() {
             setSelectedProducts(storedProducts);
         }
     }, []);
-
 
     const handleCloseModal = () => {
         setShowModal(false);
@@ -33,6 +32,10 @@ function Header() {
         setShowModal(true);
     };
 
+    const sendEmail = (order) => {
+        console.log("handleConfirm", order); // Замовлення
+    };
+
     const handleConfirm = (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
@@ -45,13 +48,12 @@ function Header() {
             phone: phone
         };
 
+        sendEmail(order);
+
         setOrderBuy(true);
         localStorage.removeItem('selectedProducts');
-        console.log("handleConfirm", order); // Замовлення
 
     };
-
-
 
     return (
         <div className="Header">
@@ -64,48 +66,51 @@ function Header() {
             {showModal && (
                 <div className="Modal">
                     <div className="ModalContent">
-                        {!orderBuy && <>
-
-                            <h2>Обрані товари</h2>
-                            <ol>
-                                {selectedProducts.map((product, index) => (
-                                    <li key={index}>
-                                        <div>
-                                            <span>{product.name}</span>
-                                            <span> - </span>
-                                            <span>{product.price}</span>
-                                            <span> - </span>
-                                            <button onClick={() => handleDeleteProduct(product.id)}>
-                                                <FaTrash/>
+                        {!orderBuy && (
+                            <>
+                                <h2>Обрані товари</h2>
+                                <ol>
+                                    {selectedProducts.map((product, index) => (
+                                        <li key={index}>
+                                            <div>
+                                                <span>{product.name}</span>
+                                                <span> - </span>
+                                                <span>{product.price}</span>
+                                                <span> - </span>
+                                                <button onClick={() => handleDeleteProduct(product.id)}>
+                                                    <FaTrash/>
+                                                </button>
+                                            </div>
+                                        </li>
+                                    ))}
+                                </ol>
+                                {selectedProducts && selectedProducts.length > 0 && (
+                                    <>
+                                        <h4>Вкажіть дані для замовлення</h4>
+                                        <form onSubmit={handleConfirm}>
+                                            <div className="inputGroup">
+                                                <label htmlFor="fullName">ФІО</label>
+                                                <input type="text" id="fullName" name="fullName" required/>
+                                            </div>
+                                            <div className="inputGroup">
+                                                <label htmlFor="phone">Мобільний телефон</label>
+                                                <input type="tel" id="phone" name="phone" required/>
+                                            </div>
+                                            <button className="CloseButtonConfirm" type="submit">
+                                                ПІДТВЕРДІТЬ ЗАМОВЛЕННЯ
                                             </button>
-                                        </div>
-                                    </li>
-                                ))}
-                            </ol>
-                            {selectedProducts && selectedProducts.length > 0 && <>
-                                <h4>Вкажіть дані для замовлення</h4>
-                                <form onSubmit={handleConfirm}>
-
-                                    <div className="inputGroup">
-                                        <label htmlFor="fullName">ФІО</label>
-                                        <input type="text" id="fullName" name="fullName" required/>
-                                    </div>
-                                    <div className="inputGroup">
-                                        <label htmlFor="phone">Мобільний телефон</label>
-                                        <input type="tel" id="phone" name="phone" required/>
-                                    </div>
-
-                                    <button className="CloseButtonConfirm" type="submit">
-                                        ПІДТВЕРДІТЬ ЗАМОВЛЕННЯ
-                                    </button>
-                                </form>
-                            </>}
-                            <div className="CloseButton" onClick={handleCloseModal}>Закрити</div>
-                        </>}
-                        {orderBuy && <>
-                            <h2>Дякуємо за замовлення</h2>
-                            <div className="CloseButton" onClick={handleCloseModal}>Закрити</div>
-                        </>}
+                                        </form>
+                                    </>
+                                )}
+                                <div className="CloseButton" onClick={handleCloseModal}>Закрити</div>
+                            </>
+                        )}
+                        {orderBuy && (
+                            <>
+                                <h2>Дякуємо за замовлення</h2>
+                                <div className="CloseButton" onClick={handleCloseModal}>Закрити</div>
+                            </>
+                        )}
                     </div>
                 </div>
             )}
