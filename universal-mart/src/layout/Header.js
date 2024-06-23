@@ -4,6 +4,7 @@ import {FaShoppingCart, FaTrash} from 'react-icons/fa'; // Передбачаю�
 function Header() {
     const [showModal, setShowModal] = useState(false);
     const [selectedProducts, setSelectedProducts] = useState([]);
+    const [orderBuy, setOrderBuy] = useState(false);
 
     useEffect(() => {
         const storedProducts = JSON.parse(localStorage.getItem('selectedProducts'));
@@ -28,8 +29,28 @@ function Header() {
         if (storedProducts) {
             setSelectedProducts(storedProducts);
         }
+        setOrderBuy(false);
         setShowModal(true);
     };
+
+    const handleConfirm = (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const fullName = formData.get('fullName');
+        const phone = formData.get('phone');
+
+        const order = {
+            products: selectedProducts,
+            fullName: fullName,
+            phone: phone
+        };
+
+        setOrderBuy(true);
+        localStorage.removeItem('selectedProducts');
+        console.log("handleConfirm", order); // Замовлення
+
+    };
+
 
 
     return (
@@ -43,24 +64,48 @@ function Header() {
             {showModal && (
                 <div className="Modal">
                     <div className="ModalContent">
+                        {!orderBuy && <>
 
-                        <h2>Обрані товари</h2>
-                        <ol>
-                            {selectedProducts.map((product, index) => (
-                                <li key={index}>
-                                    <div>
-                                        <span>{product.name}</span>
-                                        <span> - </span>
-                                        <span>{product.price}</span>
-                                        <span> - </span>
-                                        <button onClick={() => handleDeleteProduct(product.id)}>
-                                            <FaTrash/>
-                                        </button>
+                            <h2>Обрані товари</h2>
+                            <ol>
+                                {selectedProducts.map((product, index) => (
+                                    <li key={index}>
+                                        <div>
+                                            <span>{product.name}</span>
+                                            <span> - </span>
+                                            <span>{product.price}</span>
+                                            <span> - </span>
+                                            <button onClick={() => handleDeleteProduct(product.id)}>
+                                                <FaTrash/>
+                                            </button>
+                                        </div>
+                                    </li>
+                                ))}
+                            </ol>
+                            {selectedProducts && selectedProducts.length > 0 && <>
+                                <h4>Вкажіть дані для замовлення</h4>
+                                <form onSubmit={handleConfirm}>
+
+                                    <div className="inputGroup">
+                                        <label htmlFor="fullName">ФІО</label>
+                                        <input type="text" id="fullName" name="fullName" required/>
                                     </div>
-                                </li>
-                            ))}
-                        </ol>
-                        <div className="CloseButton" onClick={handleCloseModal}>Закрити</div>
+                                    <div className="inputGroup">
+                                        <label htmlFor="phone">Мобільний телефон</label>
+                                        <input type="tel" id="phone" name="phone" required/>
+                                    </div>
+
+                                    <button className="CloseButtonConfirm" type="submit">
+                                        ПІДТВЕРДІТЬ ЗАМОВЛЕННЯ
+                                    </button>
+                                </form>
+                            </>}
+                            <div className="CloseButton" onClick={handleCloseModal}>Закрити</div>
+                        </>}
+                        {orderBuy && <>
+                            <h2>Дякуємо за замовлення</h2>
+                            <div className="CloseButton" onClick={handleCloseModal}>Закрити</div>
+                        </>}
                     </div>
                 </div>
             )}

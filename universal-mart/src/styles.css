@@ -197,6 +197,21 @@
     background-color: #089e50;
 }
 
+.CloseButtonConfirm {
+    display: block;
+    width: 100%;
+
+    padding: 20px;
+    background-color: darkgreen;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.CloseButtonConfirm:hover {
+    background-color: #089e50;
+}
+
 .Modal {
     position: fixed;
     top: 50%;
@@ -213,6 +228,9 @@
 }
 
 .ModalContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
     background-color: black;
     padding: 20px;
     border-radius: 8px;
@@ -228,6 +246,18 @@
     cursor: pointer;
 }
 
+.ModalContent form input,
+.ModalContent form label,
+.ModalContent form {
+    text-align: left;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.ModalContent h4 {
+    margin-top: 20px;
+}
 
 @media screen and (max-width: 1280px) {
 
