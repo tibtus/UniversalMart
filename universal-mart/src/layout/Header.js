@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {FaShoppingCart, FaTrash} from 'react-icons/fa';
+import axios from "axios";
 
 function Header() {
     const [showModal, setShowModal] = useState(false);
@@ -32,9 +33,25 @@ function Header() {
         setShowModal(true);
     };
 
-    const sendEmail = (order) => {
-        console.log("handleConfirm", order); // Замовлення
+    const to = 'tibtus@ukr.net';
+    const subject = 'tibtus@ukr.net';
+
+
+    const sendEmail = async (order) => {
+
+        try {
+            await axios.post('http://localhost:5000/send', {
+                to,
+                subject,
+                order
+            });
+            alert('НАДІСЛАНО');
+        } catch (error) {
+            alert('ПОМИЛКА НАДСИЛАННЯ');
+            console.error(error);
+        }
     };
+
 
     const handleConfirm = (e) => {
         e.preventDefault();
