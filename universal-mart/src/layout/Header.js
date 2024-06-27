@@ -39,11 +39,18 @@ function Header() {
 
     const sendEmail = async (order) => {
 
+        let text = JSON.stringify(order);
+
         try {
-            await axios.post('http://localhost:5000/send', {
+            // await axios.post('http://localhost:5050/send', {
+            //     to,
+            //     subject,
+            //     text
+            // });
+            await axios.post('https://192.168.15.19:5050/send', {
                 to,
                 subject,
-                order
+                text
             });
             alert('НАДІСЛАНО');
         } catch (error) {
