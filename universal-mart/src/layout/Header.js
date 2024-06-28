@@ -48,7 +48,7 @@ function Header({cart, setCart}) {
         const storedProducts = JSON.parse(localStorage.getItem('selectedProducts'));
         if (storedProducts) {
             setSelectedProducts(storedProducts);
-            setCounter(storedProducts.length)
+            setCounter(storedProducts.length);
         }
         setOrderBuy(false);
         setShowModal(true);
@@ -106,6 +106,9 @@ function Header({cart, setCart}) {
         sendEmail(order);
 
         setOrderBuy(true);
+        setCounter(0);
+        setCart([]);
+        setSelectedProducts([]);
         localStorage.removeItem('selectedProducts');
 
     };
