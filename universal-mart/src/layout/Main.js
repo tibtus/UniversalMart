@@ -1,15 +1,14 @@
+import React from "react";
 import Carousel from "./Carousel";
 import Presentation from "./Presentation";
 
-function Main() {
+function Main({addToCart}) {
     return (
         <div className="Main">
             <div className="wrapper__wit">
                 <Carousel/>
-                <Presentation/>
+                <Presentation addToCart={addToCart}/>
             </div>
-
-
         </div>
     );
 }

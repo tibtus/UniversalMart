@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 
-function Presentation() {
+function Presentation({addToCart,}) {
 
     const [showMore, setShowMore] = useState(false);
-    const [cart, setCart] = useState([]);
+    // const [cart, setCart] = useState([]);
 
 
     const products = [
@@ -72,11 +72,11 @@ function Presentation() {
         },
     ];
 
-    const addToCart = (product) => {
-        const updatedCart = [...cart, product];
-        setCart(updatedCart);
-        localStorage.setItem('selectedProducts', JSON.stringify(updatedCart));
-    };
+    // const addToCart = (product) => {
+    //     const updatedCart = [...cart, product];
+    //     setCart(updatedCart);
+    //     localStorage.setItem('selectedProducts', JSON.stringify(updatedCart));
+    // };
 
     const renderProductsLeft = () => {
         return products.slice(0, 1).map((product, index) => (

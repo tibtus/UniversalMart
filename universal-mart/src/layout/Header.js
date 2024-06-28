@@ -1,18 +1,36 @@
 import React, {useEffect, useState} from 'react';
-import {FaShoppingCart, FaTrash} from 'react-icons/fa';
+import {FaShoppingBasket, FaShoppingCart, FaTrash} from 'react-icons/fa';
+
 import axios from "axios";
 
-function Header() {
+function Header({cart, setCart}) {
     const [showModal, setShowModal] = useState(false);
     const [selectedProducts, setSelectedProducts] = useState([]);
     const [orderBuy, setOrderBuy] = useState(false);
+    const [counter, setCounter] = useState(0);
 
-    useEffect(() => {
+    const loadStoredProducts = () => {
         const storedProducts = JSON.parse(localStorage.getItem('selectedProducts'));
         if (storedProducts) {
             setSelectedProducts(storedProducts);
+            setCounter(storedProducts.length);
         }
-    }, []);
+    };
+
+    useEffect(() => {
+        loadStoredProducts();
+        const handleStorageChange = (event) => {
+            if (event.key === 'selectedProducts') {
+                loadStoredProducts();
+            }
+        };
+        window.addEventListener('storage', handleStorageChange);
+
+        return () => {
+            window.removeEventListener('storage', handleStorageChange);
+        };
+    }, [cart]);
+
 
     const handleCloseModal = () => {
         setShowModal(false);
@@ -21,17 +39,35 @@ function Header() {
     const handleDeleteProduct = (id) => {
         const updatedProducts = selectedProducts.filter(product => product.id !== id);
         setSelectedProducts(updatedProducts);
+        setCounter(updatedProducts.length)
         localStorage.setItem('selectedProducts', JSON.stringify(updatedProducts));
+        setCart([]);
     };
 
     const handleCartClick = () => {
         const storedProducts = JSON.parse(localStorage.getItem('selectedProducts'));
         if (storedProducts) {
             setSelectedProducts(storedProducts);
+            setCounter(storedProducts.length)
         }
         setOrderBuy(false);
         setShowModal(true);
     };
+
+
+    function formatOrder(order) {
+        let formattedText = `Замовлення:\n\nfullName - ${order.fullName}\nphone - ${order.phone}\n\nДеталі замовлення:\n\n`;
+
+        order.products.forEach((product, index) => {
+            formattedText += `${index + 1} - замовлення\n`;
+            formattedText += `id - ${product.id}\n`;
+            formattedText += `name - ${product.name}\n`;
+            formattedText += `description - ${product.description}\n`;
+            formattedText += `price - ${product.price}\n\n`;
+        });
+
+        return formattedText.trim();
+    }
 
     const to = 'tibtus@ukr.net';
     const subject = 'tibtus@ukr.net';
@@ -39,15 +75,10 @@ function Header() {
 
     const sendEmail = async (order) => {
 
-        let text = JSON.stringify(order);
+        const text = formatOrder(order);
 
         try {
-            // await axios.post('http://localhost:5050/send', {
-            //     to,
-            //     subject,
-            //     text
-            // });
-            await axios.post('https://192.168.15.19:5050/send', {
+            await axios.post('http://localhost:5050/send', {
                 to,
                 subject,
                 text
@@ -79,12 +110,21 @@ function Header() {
 
     };
 
+    console.log("selectedProducts", selectedProducts)
+
     return (
         <div className="Header">
             <div className="wrapper wrapper_flex">
                 <div><img src="url/to/logo.png" alt="Logo"/></div>
                 <div> НАЗВА</div>
-                <div onClick={handleCartClick}><FaShoppingCart/></div>
+                <div onClick={handleCartClick}>
+                    {selectedProducts && selectedProducts.length > 0 ? (
+                        <FaShoppingBasket style={{color: '#089e50'}}/>
+                    ) : (
+                        <FaShoppingCart/>
+                    )}
+                    {counter}
+                </div>
             </div>
 
             {showModal && (
