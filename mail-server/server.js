@@ -15,7 +15,7 @@ let transporter = nodemailer.createTransport({
     secure: true,
     auth: {
         user: 'tibtus@ukr.net',
-        pass: 'YTzzdEIibYrCUI6f'
+        // pass: ''
     },
     logger: true,
     debug: true
@@ -24,7 +24,6 @@ let transporter = nodemailer.createTransport({
 app.post('/send', async (req, res) => {
     const {to, subject, text} = req.body;
 
-    // Переконайтеся, що 'text' є строкою, а не об'єктом
     if (typeof text !== 'string') {
         return res.status(400).send('Invalid "text" format');
     }
