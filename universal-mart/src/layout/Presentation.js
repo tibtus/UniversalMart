@@ -1,99 +1,104 @@
 import React, {useState} from 'react';
+import image1 from './../img/digital-pixel-camouflage.webp';
+import image2 from './../img/Product/image1.webp';
+import image3 from './../img/Product/image1.webp';
+import image4 from './../img/Product/image1.webp';
+import image5 from './../img/Product/image1.webp';
+import image6 from './../img/Product/image1.webp';
+import image7 from './../img/Product/image1.webp';
+import image8 from './../img/Product/image1.webp';
+import image9 from './../img/Product/image1.webp';
 
-function Presentation({addToCart,}) {
-
+function Presentation({addToCart}) {
     const [showMore, setShowMore] = useState(false);
-    // const [cart, setCart] = useState([]);
-
 
     const products = [
         {
-            image: 'path/to/image1.jpg',
+            image: image1,
             name: 'Product 1',
             description: 'Description of Product 1',
             price: '$10.00',
             id: '0001',
         },
         {
-            image: 'path/to/image2.jpg',
+            image: image2,
             name: 'Product 2',
             description: 'Description of Product 2',
             price: '$20.00',
             id: '0002',
         },
         {
-            image: 'path/to/image3.jpg',
+            image: image3,
             name: 'Product 3',
             description: 'Description of Product 3',
             price: '$30.00',
             id: '0003',
         },
         {
-            image: 'path/to/image4.jpg',
+            image: image4,
             name: 'Product 4',
-            description: 'Description of Product 14',
-            price: '$550.00',
+            description: 'Description of Product 4',
+            price: '$40.00',
             id: '0004',
         },
         {
-            image: 'path/to/image5.jpg',
+            image: image5,
             name: 'Product 5',
             description: 'Description of Product 5',
-            price: '$520.00',
+            price: '$50.00',
             id: '0005',
         },
         {
-            image: 'path/to/image6.jpg',
+            image: image6,
             name: 'Product 6',
             description: 'Description of Product 6',
             price: '$60.00',
             id: '0006',
         },
         {
-            image: 'path/to/image7.jpg',
+            image: image7,
             name: 'Product 7',
             description: 'Description of Product 7',
             price: '$70.00',
             id: '0007',
         },
         {
-            image: 'path/to/image8.jpg',
+            image: image8,
             name: 'Product 8',
             description: 'Description of Product 8',
             price: '$80.00',
             id: '0008',
         },
         {
-            image: 'path/to/image9.jpg',
+            image: image9,
             name: 'Product 9',
             description: 'Description of Product 9',
-            price: '$7880.00',
+            price: '$90.00',
             id: '0009',
         },
     ];
 
-    // const addToCart = (product) => {
-    //     const updatedCart = [...cart, product];
-    //     setCart(updatedCart);
-    //     localStorage.setItem('selectedProducts', JSON.stringify(updatedCart));
-    // };
-
     const renderProductsLeft = () => {
         return products.slice(0, 1).map((product, index) => (
-
             <div className="Presentation__left" key={index}>
-                <span>{product.name}</span>
-                <p>{product.description}</p>
-                <span>{product.price}</span>
-                <button onClick={() => addToCart(product)}>Купити</button>
-            </div>
+                {/*<div className="Presentation__left__block__top">*/}
+                <img src={product.image} alt={product.name}/>
+                {/*</div>*/}
+                <div className="Presentation__left__block__bt">
+                    <span>{product.name}</span>
+                    <p>{product.description}</p>
+                    <span>{product.price}</span>
+                    <button onClick={() => addToCart(product)}>Купити</button>
+                </div>
 
+            </div>
         ));
     };
 
     const renderProductsRight = () => {
         return products.slice(1, 3).map((product, index) => (
             <div className="Presentation__right" key={index}>
+                <img src={product.image} alt={product.name}/>
                 <span>{product.name}</span>
                 <p>{product.description}</p>
                 <span>{product.price}</span>
@@ -105,6 +110,7 @@ function Presentation({addToCart,}) {
     const renderProductsAll = () => {
         return products.slice(4).map((product, index) => (
             <div className="Presentation__right" key={index}>
+                <img src={product.image} alt={product.name}/>
                 <span>{product.name}</span>
                 <p>{product.description}</p>
                 <span>{product.price}</span>
@@ -112,7 +118,6 @@ function Presentation({addToCart,}) {
             </div>
         ));
     };
-
 
     const handleShowMore = () => {
         setShowMore(true);
@@ -130,7 +135,6 @@ function Presentation({addToCart,}) {
                     {showMore && renderProductsAll()}
                 </div>
             </div>
-
             {!showMore && (
                 <div className="wrapper All_price">
                     <button onClick={handleShowMore}>Показати ще</button>
@@ -141,4 +145,3 @@ function Presentation({addToCart,}) {
 }
 
 export default Presentation;
-

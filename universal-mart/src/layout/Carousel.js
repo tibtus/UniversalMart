@@ -1,9 +1,13 @@
 import React, {useState} from 'react';
 
+import img1 from './../img/digital-pixel-camouflage.webp'
+import img2 from './../img/digital-pixel-camouflage.webp'
+import img3 from './../img/digital-pixel-camouflage.webp'
+
 const images = [
-    'https://via.placeholder.com/1920x600?text=Image+1',
-    'https://via.placeholder.com/1920x600?text=Image+2',
-    'https://via.placeholder.com/1920x600?text=Image+3'
+    img1,
+    img2,
+    img3,
 ];
 
 function Carousel() {

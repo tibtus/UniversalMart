@@ -126,6 +126,8 @@
     flex-direction: column;
     justify-content: space-between;
     border: 1px solid olivedrab;
+    margin-bottom: 60px;
+    position: relative;
 }
 
 .Presentation .Presentation__right {
@@ -152,6 +154,39 @@
     margin: 0 auto;
     justify-content: space-between;
     text-transform: uppercase;
+}
+
+
+.Presentation__left__block__top {
+    display: flex;
+    /*width: 50%;*/
+    justify-content: space-between;
+    height: 50%;
+}
+
+.Presentation__left__block__bt {
+    display: flex;
+    /*width: 50%;*/
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    margin: 0 auto;
+    height: 50%;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    color: white;
+    /*border: 1px solid white;*/
+    box-sizing: border-box;
+    padding: 0px 20px;
+    background: darkslategrey;
+}
+
+.Presentation__left img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    box-sizing: border-box;
 }
 
 .Presentation__left span {
@@ -209,6 +244,7 @@
     border: none;
     cursor: pointer;
     display: block;
+
 
 }
 
@@ -284,6 +320,10 @@
         max-width: 90vw;
     }
 
+    .Presentation__wrapper {
+        min-height: 700px;
+    }
+
     .Presentation .Presentation__left {
         width: 100%;
         height: 250px;
@@ -292,6 +332,13 @@
     .Presentation .Presentation__right {
         width: 40%;
         height: 200px;
+    }
+
+    .Presentation .All_price button {
+        margin-top: 0;
+        position: fixed;
+        bottom: 50px;
+        width: 90%;
     }
 
 }
@@ -310,7 +357,7 @@
 
     .Presentation .Presentation__right {
         width: 35%;
-        height: 180px;
+        height: 230px;
     }
 
 }
@@ -328,7 +375,7 @@
 
     .Presentation .Presentation__right {
         width: 30%;
-        height: 180px;
+        /*height: 180px;*/
     }
 
 }
