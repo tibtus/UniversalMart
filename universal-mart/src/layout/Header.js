@@ -118,7 +118,8 @@ function Header({cart, setCart}) {
     return (
         <div className="Header">
             <div className="wrapper wrapper_flex">
-                <div><img src="url/to/logo.png" alt="Logo"/></div>
+                {/*<div><img src="url/to/logo.png" alt="Logo"/></div>*/}
+                <div>ABT</div>
                 <div> НАЗВА</div>
                 <div onClick={handleCartClick}>
                     {selectedProducts && selectedProducts.length > 0 ? (

@@ -5,7 +5,8 @@ function Footer() {
         <div className="Footer">
 
             <div className="wrapper wrapper_flex">
-                <div><img src="url/to/logo.png" alt="Logo"/></div>
+                {/*<div><img src="url/to/logo.png" alt="Logo"/></div>*/}
+                <div>ABT</div>
                 <div>АДРЕСА</div>
                 <div>ТЕЛЕФОН</div>
             </div>
